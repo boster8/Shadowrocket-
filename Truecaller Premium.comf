@@ -1,0 +1,9 @@
+#!name=Truecaller Premium {Thượng Tôn}
+#!desc=Truecaller Premium {Thượng Tôn}
+#!author=Thượng Tôn
+
+[MITM]
+hostname = %APPEND% premium*.truecaller.com
+
+[Script]
+Truecaller = type=http-response,pattern=^https://premium-(.+)\.truecaller\.com/v\d/(subscriptions|products/apple),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/NightmarketServer/Shadowrocket-Module/refs/heads/main/TCPV.js
