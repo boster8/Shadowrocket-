@@ -1,0 +1,49 @@
+#!name=Lightroom Premium {Thượng Tôn}
+#!desc=Lightroom Premium {Thượng Tôn}
+#!tag=Lightroom, Adobe, Photo Editor, Premium Unlock
+# đŸ‘¤ Author: @Nightmarket Server / I-am-R-E  
+# đŸ’¬ Discord: https://discord.gg/juY9tw5AJY  
+# đŸ€ Web Module: https://nightmarket.site/modules
+
+
+proxy-providers: {}
+proxies: []
+
+proxy-groups:
+  - name: LightRoom
+    type: select
+    proxies:
+      - DIRECT
+  - name: NightmarketServer
+    type: select
+    proxies:
+      - DIRECT
+
+http:
+  mitm:
+    - "photos.adobe.io"
+
+  script:
+    - match: ^https:\/\/photos\.adobe\.io\/v2\/accounts*
+      name: LightRoom1
+      type: response
+      require-body: true
+      timeout: 10
+
+script-providers:
+  LightRoom1:
+    url: https://raw.githubusercontent.com/litieyin/AD_VIP/main/Script/lightroom.js
+    interval: 86400
+
+rules:
+  - DOMAIN,photos.adobe.io,LightRoom
+  - MATCH,NightmarketServer
+
+dns:
+  default-nameserver:
+    - 114.114.114.114
+    - 1.1.1.1
+  skip-cert-verify: true
+
+log-level: info
+mode: rule
